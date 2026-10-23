@@ -1,0 +1,38 @@
+//
+// Base.xcconfig
+// Voterify
+//
+// Shared Xcode build and Google Firestore database configuration.
+//
+
+PRODUCT_BUNDLE_IDENTIFIER = com.voterify.app
+PRODUCT_NAME = Voterify
+MARKETING_VERSION = 1.0.0
+CURRENT_PROJECT_VERSION = 1
+IPHONEOS_DEPLOYMENT_TARGET = 17.0
+SWIFT_VERSION = 5.0
+TARGETED_DEVICE_FAMILY = 1,2
+
+// Google Firestore Database Connection Settings
+FIRESTORE_PROJECT_ID = voterify-production
+FIRESTORE_DATABASE_ID = (default)
+FIRESTORE_API_VERSION = v1
+FIRESTORE_DEFAULT_REGION = nam5
+
+// Firestore Collection Names
+FIRESTORE_COLLECTION_USERS = users
+FIRESTORE_COLLECTION_VOTERS = voters
+FIRESTORE_COLLECTION_ELECTIONS = elections
+FIRESTORE_COLLECTION_CANDIDATES = candidates
+FIRESTORE_COLLECTION_REGIONS = regions
+FIRESTORE_COLLECTION_PARTIES = parties
+FIRESTORE_COLLECTION_PERMISSIONS = permissions
+FIRESTORE_COLLECTION_VOTES = votes
+FIRESTORE_COLLECTION_BLOCKCHAIN = blockchain_ledger
+
+// OAuth Provider Configuration
+OAUTH_REDIRECT_SCHEME = voterify
+OAUTH_APPLE_SERVICE_ID = com.voterify.app.auth
+OAUTH_GOOGLE_CLIENT_ID = 100000000000-voterifygoogleclient.apps.googleusercontent.com
+OAUTH_FACEBOOK_APP_ID = 100000000000000
+OAUTH_TWITTER_CLIENT_ID = voterify_twitter_oauth2_client_id

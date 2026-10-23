@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Voterify Google Firestore Database Schema",
+  "description": "Collection schemas for loading into Google Cloud Firestore for the Voterify iOS application.",
+  "type": "object",
+  "definitions": {
+    "PermissionType": {
+      "type": "string",
+      "enum": ["Read", "Edit", "Admin"],
+      "description": "Permission level granted to a user on a target model."
+    },
+    "User": {
+      "type": "object",
+      "collection": "users",
+      "required": ["id", "name", "oauthProvider"],
+      "properties": {
+        "id": { "type": "string", "description": "Unique user identifier" },
+        "name": { "type": "string", "description": "Display name from OAuth provider" },
+        "email": { "type": "string", "format": "email" },
+        "oauthProvider": {
+          "type": "string",
+          "enum": ["apple", "google", "facebook", "twitter"],
+          "description": "OAuth login provider"
+        },
+        "oauthProviderSubjectId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Voter": {
+      "type": "object",
+      "collection": "voters",
+      "required": ["id", "publicUniqueName", "privateUserId"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Anonymous voter GUID used in votes and the public blockchain key"
+        },
+        "publicUniqueName": {
+          "type": "string",
+          "description": "Public unique voter identifier generated using a GUID (e.g., VOTER-8A4F1C...)"
+        },
+        "privateUserId": {
+          "type": "string",
+          "description": "Private ID used internally to match back to the User model without exposing identity publicly"
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Region": {
+      "type": "object",
+      "collection": "regions",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "Party": {
+      "type": "object",
+      "collection": "parties",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "Candidate": {
+      "type": "object",
+      "collection": "candidates",
+      "required": ["id", "name", "electionId", "partyId", "isActive"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "electionId": { "type": "string" },
+        "partyId": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      }
+    },
+    "Election": {
+      "type": "object",
+      "collection": "elections",
+      "required": ["id", "name", "dateStart", "dateEnd", "regionId", "isActive", "candidates"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "dateStart": { "type": "string", "format": "date-time" },
+        "dateEnd": { "type": "string", "format": "date-time" },
+        "regionId": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "candidates": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Candidate" }
+        }
+      }
+    },
+    "Permission": {
+      "type": "object",
+      "collection": "permissions",
+      "required": ["id", "userId", "resourceType", "resourceId", "permissionType"],
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string", "description": "Foreign key to User.id" },
+        "resourceType": {
+          "type": "string",
+          "enum": ["election", "candidate", "region", "party", "global"],
+          "description": "Target model combined with User model"
+        },
+        "resourceId": { "type": "string", "description": "ID of target model instance or 'all'" },
+        "permissionType": { "$ref": "#/definitions/PermissionType" }
+      }
+    },
+    "Vote": {
+      "type": "object",
+      "collection": "votes",
+      "required": ["id", "electionId", "candidateId", "candidateName", "voterId", "date", "statusFlag", "blockchainKey"],
+      "properties": {
+        "id": { "type": "string" },
+        "electionId": { "type": "string" },
+        "candidateId": { "type": "string" },
+        "candidateName": { "type": "string" },
+        "voterId": { "type": "string", "description": "Anonymous Voter GUID" },
+        "date": { "type": "string", "format": "date-time" },
+        "statusFlag": {
+          "type": "string",
+          "enum": ["Pending", "Recorded", "Verified", "Rejected"]
+        },
+        "blockchainKey": {
+          "type": "string",
+          "description": "Composite blockchain key derived from the vote and unique voter ID"
+        }
+      }
+    },
+    "BlockchainBlock": {
+      "type": "object",
+      "collection": "blockchain_ledger",
+      "required": ["id", "index", "timestamp", "blockKey", "electionId", "voterId", "vote", "previousHash", "blockHash", "nonce"],
+      "properties": {
+        "id": { "type": "string" },
+        "index": { "type": "integer" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "blockKey": {
+          "type": "string",
+          "description": "Deterministic key combining voterId GUID and vote payload"
+        },
+        "electionId": { "type": "string" },
+        "voterId": { "type": "string" },
+        "vote": { "$ref": "#/definitions/Vote" },
+        "previousHash": { "type": "string" },
+        "blockHash": { "type": "string" },
+        "nonce": { "type": "integer" }
+      }
+    }
+  }
+}

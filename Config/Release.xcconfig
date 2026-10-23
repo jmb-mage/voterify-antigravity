@@ -1,0 +1,19 @@
+//
+// Release.xcconfig
+// Voterify
+//
+// Release / Production configuration for Google Firestore & OAuth connections.
+//
+
+#include "Base.xcconfig"
+
+FIRESTORE_ENVIRONMENT = production
+FIRESTORE_PROJECT_ID = voterify-production
+FIRESTORE_DATABASE_ID = (default)
+FIRESTORE_HOST = firestore.googleapis.com
+FIRESTORE_USE_SSL = YES
+FIRESTORE_USE_EMULATOR = NO
+FIRESTORE_API_KEY = AIzaSyProductionVoterifyFirestoreKey99999
+
+SWIFT_OPTIMIZATION_LEVEL = -O
+VALIDATE_PRODUCT = YES

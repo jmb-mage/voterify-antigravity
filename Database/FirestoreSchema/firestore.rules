@@ -1,0 +1,120 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function hasPermission(resourceType, resourceId, requiredLevel) {
+      let globalPermPath = /databases/$(database)/documents/permissions/$(request.auth.uid + "_global_all");
+      let specificPermPath = /databases/$(database)/documents/permissions/$(request.auth.uid + "_" + resourceType + "_" + resourceId);
+      return isSignedIn() && (
+        (exists(globalPermPath) && get(globalPermPath).data.permissionType in requiredLevel) ||
+        (exists(specificPermPath) && get(specificPermPath).data.permissionType in requiredLevel)
+      );
+    }
+
+    function canEdit(resourceType, resourceId) {
+      return hasPermission(resourceType, resourceId, ['Edit', 'Admin']);
+    }
+
+    function isAdmin() {
+      return hasPermission('global', 'all', ['Admin']);
+    }
+
+    // 1. Users Collection (OAuth-backed user accounts)
+    match /users/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow create, update: if isSignedIn() && (request.auth.uid == userId || isAdmin())
+        && request.resource.data.keys().hasAll(['id', 'name', 'oauthProvider'])
+        && request.resource.data.id is string
+        && request.resource.data.name is string
+        && request.resource.data.oauthProvider in ['apple', 'google', 'facebook', 'twitter'];
+      allow delete: if isAdmin();
+    }
+
+    // 2. Voters Collection (Anonymous voter identities with public GUID name and private user mapping)
+    match /voters/{voterId} {
+      // Only the owning user or system can read the privateUserId mapping
+      allow read: if isSignedIn() && (resource.data.privateUserId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn()
+        && request.resource.data.privateUserId == request.auth.uid
+        && request.resource.data.id is string
+        && request.resource.data.publicUniqueName is string;
+      allow update, delete: if false; // Anonymous voter identity is immutable once created
+    }
+
+    // 3. Regions Collection
+    match /regions/{regionId} {
+      allow read: if true;
+      allow create, update: if canEdit('region', regionId)
+        && request.resource.data.keys().hasAll(['id', 'name'])
+        && request.resource.data.id is string
+        && request.resource.data.name is string;
+      allow delete: if isAdmin();
+    }
+
+    // 4. Parties Collection
+    match /parties/{partyId} {
+      allow read: if true;
+      allow create, update: if canEdit('party', partyId)
+        && request.resource.data.keys().hasAll(['id', 'name'])
+        && request.resource.data.id is string
+        && request.resource.data.name is string;
+      allow delete: if isAdmin();
+    }
+
+    // 5. Candidates Collection
+    match /candidates/{candidateId} {
+      allow read: if true;
+      allow create, update: if canEdit('candidate', candidateId)
+        && request.resource.data.keys().hasAll(['id', 'name', 'electionId', 'partyId', 'isActive'])
+        && request.resource.data.id is string
+        && request.resource.data.name is string
+        && request.resource.data.electionId is string
+        && request.resource.data.partyId is string
+        && request.resource.data.isActive is bool;
+      allow delete: if isAdmin();
+    }
+
+    // 6. Elections Collection
+    match /elections/{electionId} {
+      allow read: if true;
+      allow create, update: if canEdit('election', electionId)
+        && request.resource.data.keys().hasAll(['id', 'name', 'dateStart', 'dateEnd', 'regionId', 'isActive', 'candidates'])
+        && request.resource.data.id is string
+        && request.resource.data.name is string
+        && request.resource.data.regionId is string
+        && request.resource.data.isActive is bool
+        && request.resource.data.candidates is list;
+      allow delete: if isAdmin();
+    }
+
+    // 7. Permissions Collection (User + Model + PermissionType: Read, Edit, Admin)
+    match /permissions/{permissionId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin()
+        && request.resource.data.keys().hasAll(['id', 'userId', 'resourceType', 'resourceId', 'permissionType'])
+        && request.resource.data.permissionType in ['Read', 'Edit', 'Admin'];
+    }
+
+    // 8. Votes Collection (Anonymous votes linked by voter GUID)
+    match /votes/{voteId} {
+      allow read: if true;
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasAll(['id', 'electionId', 'candidateId', 'candidateName', 'voterId', 'date', 'statusFlag', 'blockchainKey'])
+        && request.resource.data.statusFlag in ['Pending', 'Recorded', 'Verified', 'Rejected'];
+      allow update, delete: if false; // Votes are append-only
+    }
+
+    // 9. Public Blockchain Ledger Collection (Immutable public blocks keyed by vote + unique voter ID)
+    match /blockchain_ledger/{blockId} {
+      allow read: if true; // Publicly auditable by everyone
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasAll(['id', 'index', 'timestamp', 'blockKey', 'electionId', 'voterId', 'vote', 'previousHash', 'blockHash', 'nonce']);
+      allow update, delete: if false; // Immutable blockchain records
+    }
+  }
+}

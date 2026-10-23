@@ -1,0 +1,148 @@
+{
+  "regions": [
+    { "id": "region-national", "name": "National District" },
+    { "id": "region-north", "name": "Northern Metro Region" },
+    { "id": "region-pacific", "name": "Pacific Coastal Region" }
+  ],
+  "parties": [
+    { "id": "party-civic", "name": "Civic Alliance Party" },
+    { "id": "party-future", "name": "Future Horizon Party" },
+    { "id": "party-ind", "name": "Independent Coalition" }
+  ],
+  "candidates": [
+    {
+      "id": "cand-elena-rostova",
+      "name": "Elena Rostova",
+      "electionId": "election-2026-general",
+      "partyId": "party-civic",
+      "isActive": true
+    },
+    {
+      "id": "cand-marcus-vance",
+      "name": "Marcus Vance",
+      "electionId": "election-2026-general",
+      "partyId": "party-future",
+      "isActive": true
+    },
+    {
+      "id": "cand-priya-nair",
+      "name": "Priya Nair",
+      "electionId": "election-2026-general",
+      "partyId": "party-ind",
+      "isActive": true
+    },
+    {
+      "id": "cand-david-chen",
+      "name": "David Chen",
+      "electionId": "election-2026-transit",
+      "partyId": "party-civic",
+      "isActive": true
+    },
+    {
+      "id": "cand-sarah-jenkins",
+      "name": "Sarah Jenkins",
+      "electionId": "election-2026-transit",
+      "partyId": "party-future",
+      "isActive": true
+    }
+  ],
+  "elections": [
+    {
+      "id": "election-2026-general",
+      "name": "2026 National Representative Poll",
+      "dateStart": "2026-10-01T00:00:00Z",
+      "dateEnd": "2026-11-15T23:59:59Z",
+      "regionId": "region-national",
+      "isActive": true,
+      "candidates": [
+        {
+          "id": "cand-elena-rostova",
+          "name": "Elena Rostova",
+          "electionId": "election-2026-general",
+          "partyId": "party-civic",
+          "isActive": true
+        },
+        {
+          "id": "cand-marcus-vance",
+          "name": "Marcus Vance",
+          "electionId": "election-2026-general",
+          "partyId": "party-future",
+          "isActive": true
+        },
+        {
+          "id": "cand-priya-nair",
+          "name": "Priya Nair",
+          "electionId": "election-2026-general",
+          "partyId": "party-ind",
+          "isActive": true
+        }
+      ]
+    },
+    {
+      "id": "election-2026-transit",
+      "name": "Northern Metro Clean Transit Commissioner",
+      "dateStart": "2026-10-15T00:00:00Z",
+      "dateEnd": "2026-12-01T23:59:59Z",
+      "regionId": "region-north",
+      "isActive": true,
+      "candidates": [
+        {
+          "id": "cand-david-chen",
+          "name": "David Chen",
+          "electionId": "election-2026-transit",
+          "partyId": "party-civic",
+          "isActive": true
+        },
+        {
+          "id": "cand-sarah-jenkins",
+          "name": "Sarah Jenkins",
+          "electionId": "election-2026-transit",
+          "partyId": "party-future",
+          "isActive": true
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "user-admin-001",
+      "name": "Alex Morgan (Admin)",
+      "email": "admin@voterify.org",
+      "oauthProvider": "apple"
+    },
+    {
+      "id": "user-voter-001",
+      "name": "Jordan Taylor",
+      "email": "jordan@example.com",
+      "oauthProvider": "google"
+    }
+  ],
+  "voters": [
+    {
+      "id": "550E8400-E29B-41D4-A716-446655440000",
+      "publicUniqueName": "VOTER-550E8400-E29B-41D4-A716-446655440000",
+      "privateUserId": "user-admin-001"
+    },
+    {
+      "id": "7C9E6679-7425-40DE-944B-E07FC1F90AE7",
+      "publicUniqueName": "VOTER-7C9E6679-7425-40DE-944B-E07FC1F90AE7",
+      "privateUserId": "user-voter-001"
+    }
+  ],
+  "permissions": [
+    {
+      "id": "user-admin-001_global_all",
+      "userId": "user-admin-001",
+      "resourceType": "global",
+      "resourceId": "all",
+      "permissionType": "Admin"
+    },
+    {
+      "id": "user-voter-001_election_election-2026-general",
+      "userId": "user-voter-001",
+      "resourceType": "election",
+      "resourceId": "election-2026-general",
+      "permissionType": "Read"
+    }
+  ]
+}

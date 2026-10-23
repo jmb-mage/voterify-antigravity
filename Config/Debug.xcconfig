@@ -1,0 +1,19 @@
+//
+// Debug.xcconfig
+// Voterify
+//
+// Debug / Development configuration for Google Firestore & OAuth connections.
+//
+
+#include "Base.xcconfig"
+
+FIRESTORE_ENVIRONMENT = development
+FIRESTORE_PROJECT_ID = voterify-dev
+FIRESTORE_DATABASE_ID = (default)
+FIRESTORE_HOST = localhost:8080
+FIRESTORE_USE_SSL = NO
+FIRESTORE_USE_EMULATOR = YES
+FIRESTORE_API_KEY = AIzaSyDevelopmentVoterifyFirestoreKey00000
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
+SWIFT_OPTIMIZATION_LEVEL = -Onone
