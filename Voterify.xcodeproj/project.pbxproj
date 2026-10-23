@@ -118,19 +118,6 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		D10000010000000000000011 /* FirestoreSchema */ = {
-			isa = PBXGroup;
-			children = (
-				B10000010000000000000033 /* firebase.json */,
-				B10000010000000000000034 /* firestore.rules */,
-				B10000010000000000000035 /* firestore.indexes.json */,
-				B10000010000000000000036 /* schema.json */,
-				B10000010000000000000037 /* seed_data.json */,
-				B10000010000000000000038 /* load_schema.sh */,
-			);
-			path = FirestoreSchema;
-			sourceTree = "<group>";
-		};
 		D10000010000000000000003 /* Voterify */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +208,19 @@
 				B10000010000000000000028 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D10000010000000000000011 /* FirestoreSchema */ = {
+			isa = PBXGroup;
+			children = (
+				B10000010000000000000033 /* firebase.json */,
+				B10000010000000000000034 /* firestore.rules */,
+				B10000010000000000000035 /* firestore.indexes.json */,
+				B10000010000000000000036 /* schema.json */,
+				B10000010000000000000037 /* seed_data.json */,
+				B10000010000000000000038 /* load_schema.sh */,
+			);
+			path = FirestoreSchema;
 			sourceTree = "<group>";
 		};
 		D10000010000000000000012 /* Products */ = {

@@ -20,8 +20,63 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FirestoreConfiguration</key>
+	<dict>
+		<key>APIKey</key>
+		<string>$(FIRESTORE_API_KEY)</string>
+		<key>APIVersion</key>
+		<string>$(FIRESTORE_API_VERSION)</string>
+		<key>Collections</key>
+		<dict>
+			<key>Blockchain</key>
+			<string>$(FIRESTORE_COLLECTION_BLOCKCHAIN)</string>
+			<key>Candidates</key>
+			<string>$(FIRESTORE_COLLECTION_CANDIDATES)</string>
+			<key>Elections</key>
+			<string>$(FIRESTORE_COLLECTION_ELECTIONS)</string>
+			<key>Parties</key>
+			<string>$(FIRESTORE_COLLECTION_PARTIES)</string>
+			<key>Permissions</key>
+			<string>$(FIRESTORE_COLLECTION_PERMISSIONS)</string>
+			<key>Regions</key>
+			<string>$(FIRESTORE_COLLECTION_REGIONS)</string>
+			<key>Users</key>
+			<string>$(FIRESTORE_COLLECTION_USERS)</string>
+			<key>Voters</key>
+			<string>$(FIRESTORE_COLLECTION_VOTERS)</string>
+			<key>Votes</key>
+			<string>$(FIRESTORE_COLLECTION_VOTES)</string>
+		</dict>
+		<key>DatabaseID</key>
+		<string>$(FIRESTORE_DATABASE_ID)</string>
+		<key>DefaultRegion</key>
+		<string>$(FIRESTORE_DEFAULT_REGION)</string>
+		<key>Environment</key>
+		<string>$(FIRESTORE_ENVIRONMENT)</string>
+		<key>Host</key>
+		<string>$(FIRESTORE_HOST)</string>
+		<key>ProjectID</key>
+		<string>$(FIRESTORE_PROJECT_ID)</string>
+		<key>UseEmulator</key>
+		<string>$(FIRESTORE_USE_EMULATOR)</string>
+		<key>UseSSL</key>
+		<string>$(FIRESTORE_USE_SSL)</string>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>OAuthConfiguration</key>
+	<dict>
+		<key>AppleServiceID</key>
+		<string>$(OAUTH_APPLE_SERVICE_ID)</string>
+		<key>FacebookAppID</key>
+		<string>$(OAUTH_FACEBOOK_APP_ID)</string>
+		<key>GoogleClientID</key>
+		<string>$(OAUTH_GOOGLE_CLIENT_ID)</string>
+		<key>RedirectScheme</key>
+		<string>$(OAUTH_REDIRECT_SCHEME)</string>
+		<key>TwitterClientID</key>
+		<string>$(OAUTH_TWITTER_CLIENT_ID)</string>
+	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -35,60 +90,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>FirestoreConfiguration</key>
-	<dict>
-		<key>Environment</key>
-		<string>$(FIRESTORE_ENVIRONMENT)</string>
-		<key>ProjectID</key>
-		<string>$(FIRESTORE_PROJECT_ID)</string>
-		<key>DatabaseID</key>
-		<string>$(FIRESTORE_DATABASE_ID)</string>
-		<key>Host</key>
-		<string>$(FIRESTORE_HOST)</string>
-		<key>UseSSL</key>
-		<string>$(FIRESTORE_USE_SSL)</string>
-		<key>UseEmulator</key>
-		<string>$(FIRESTORE_USE_EMULATOR)</string>
-		<key>APIKey</key>
-		<string>$(FIRESTORE_API_KEY)</string>
-		<key>APIVersion</key>
-		<string>$(FIRESTORE_API_VERSION)</string>
-		<key>DefaultRegion</key>
-		<string>$(FIRESTORE_DEFAULT_REGION)</string>
-		<key>Collections</key>
-		<dict>
-			<key>Users</key>
-			<string>$(FIRESTORE_COLLECTION_USERS)</string>
-			<key>Voters</key>
-			<string>$(FIRESTORE_COLLECTION_VOTERS)</string>
-			<key>Elections</key>
-			<string>$(FIRESTORE_COLLECTION_ELECTIONS)</string>
-			<key>Candidates</key>
-			<string>$(FIRESTORE_COLLECTION_CANDIDATES)</string>
-			<key>Regions</key>
-			<string>$(FIRESTORE_COLLECTION_REGIONS)</string>
-			<key>Parties</key>
-			<string>$(FIRESTORE_COLLECTION_PARTIES)</string>
-			<key>Permissions</key>
-			<string>$(FIRESTORE_COLLECTION_PERMISSIONS)</string>
-			<key>Votes</key>
-			<string>$(FIRESTORE_COLLECTION_VOTES)</string>
-			<key>Blockchain</key>
-			<string>$(FIRESTORE_COLLECTION_BLOCKCHAIN)</string>
-		</dict>
-	</dict>
-	<key>OAuthConfiguration</key>
-	<dict>
-		<key>RedirectScheme</key>
-		<string>$(OAUTH_REDIRECT_SCHEME)</string>
-		<key>AppleServiceID</key>
-		<string>$(OAUTH_APPLE_SERVICE_ID)</string>
-		<key>GoogleClientID</key>
-		<string>$(OAUTH_GOOGLE_CLIENT_ID)</string>
-		<key>FacebookAppID</key>
-		<string>$(OAUTH_FACEBOOK_APP_ID)</string>
-		<key>TwitterClientID</key>
-		<string>$(OAUTH_TWITTER_CLIENT_ID)</string>
-	</dict>
 </dict>
 </plist>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel_9_pro" />
+        <target>android-35</target>
+      </config>
+    </shared>
+  </component>
+  <component name="DeploymentTargetSelector">
+    <selectionStates>
+      <SelectionState runConfigName="Debug Pixel 9 Pro">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2026-10-23T18:21:28Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/jmb/.android/avd/Pixel_9_Pro_API_35.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+      </SelectionState>
+      <SelectionState runConfigName="app">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2026-10-23T18:21:28Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/jmb/.android/avd/Pixel_9_Pro_API_35.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+      </SelectionState>
+    </selectionStates>
+  </component>
+  <component name="RunManager" selected="Android App.Debug Pixel 9 Pro">
+    <list>
+      <item itemvalue="Android App.Debug Pixel 9 Pro" />
+      <item itemvalue="Android App.app" />
+    </list>
+  </component>
+</project>

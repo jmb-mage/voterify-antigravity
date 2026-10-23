@@ -1,0 +1,34 @@
+{
+  "project_info": {
+    "project_number": "100000000000",
+    "project_id": "voterify-dev",
+    "storage_bucket": "voterify-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100000000000:android:voterify00000000",
+        "android_client_info": {
+          "package_name": "com.voterify.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100000000000-voterifygoogleclient.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDevelopmentVoterifyFirestoreKey00000"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

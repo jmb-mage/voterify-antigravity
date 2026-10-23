@@ -42,5 +42,35 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
+# Android / Gradle / Android Studio
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+release/
+.gradle/
+**/build/
+local.properties
+*.hprof
+captures/
+.externalNativeBuild/
+.cxx/
+.navigation/
+output-metadata.json
+
+# Android Studio transient IDE caches (keep shared project & run configurations tracked)
+Android/.idea/caches/
+Android/.idea/libraries/
+Android/.idea/shelf/
+Android/.idea/tasks.xml
+Android/.idea/usage.statistics.xml
+Android/.idea/dictionaries/
+Android/.idea/navEditor.xml
+Android/.idea/assetWizardSettings.xml
+
 # macOS
 .DS_Store
